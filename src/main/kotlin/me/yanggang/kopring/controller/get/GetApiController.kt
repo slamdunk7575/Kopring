@@ -17,9 +17,10 @@ class GetApiController {
     }
 
     @GetMapping("/get-mapping/path-variable/{name}/{age}")
-    fun pathVariable(@PathVariable name: String, @PathVariable age: Int): String {
-        println("이름:$name, 나이:$age")
-        return "$name, $age";
+    fun pathVariable(@PathVariable(value = "name") _name: String, @PathVariable(name = "age") age: Int): String {
+        val name = "kopring"
+        println("이름:$_name, 나이:$age")
+        return "$_name, $age";
     }
 
 }
