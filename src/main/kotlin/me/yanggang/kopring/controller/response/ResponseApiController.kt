@@ -1,7 +1,10 @@
 package me.yanggang.kopring.controller.response
 
+import me.yanggang.kopring.model.http.UserRequest
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.GetMapping
+import org.springframework.web.bind.annotation.PostMapping
+import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
@@ -20,6 +23,11 @@ class ResponseApiController {
         }?: kotlin.run {
             return ResponseEntity.status(400).body("age 값이 누락되었습니다.")
         }
+    }
+
+    @PostMapping("")
+    fun postMapping(@RequestBody userRequest: UserRequest?): ResponseEntity<UserRequest> {
+        return ResponseEntity.status(200).body(userRequest)
     }
 
 }
