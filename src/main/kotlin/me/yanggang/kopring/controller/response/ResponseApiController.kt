@@ -1,9 +1,11 @@
 package me.yanggang.kopring.controller.response
 
 import me.yanggang.kopring.model.http.UserRequest
+import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PostMapping
+import org.springframework.web.bind.annotation.PutMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RequestParam
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController
 @RequestMapping("/api/response")
 class ResponseApiController {
 
+    // 1. GET (400)
     @GetMapping("")
     fun getMapping(@RequestParam age: Int?): ResponseEntity<String> {
         return age?.let {
@@ -25,9 +28,17 @@ class ResponseApiController {
         }
     }
 
+    // 2. POST (200)
     @PostMapping("")
     fun postMapping(@RequestBody userRequest: UserRequest?): ResponseEntity<UserRequest> {
         return ResponseEntity.status(200).body(userRequest)
+        // Object Mapper 통해 Object -> JSON 으로 변환
     }
 
+    // 3. PUT (201)
+    @PutMapping("")
+    fun putMapping(@RequestBody userRequest: UserRequest?): ResponseEntity<UserRequest> {
+        // (가정) 기존 데이터가 없어서 새로 생성함
+        return ResponseEntity.status(HttpStatus.CREATED).body(userRequest)
+    }
 }
