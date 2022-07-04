@@ -28,6 +28,18 @@ class ResponseApiController {
         }?: kotlin.run {
             return ResponseEntity.status(400).body("age 값이 누락되었습니다.")
         }
+
+        // 1. age == null -> 400 에러
+        /*if (age == null) {
+            return ResponseEntity.status(400).body("age 값이 누락되었습니다.")
+        }
+
+        // 2. age < 20 -> 400 에러
+        if (age < 20) {
+            return ResponseEntity.status(400).body("age 값은 20 보다 커야 합니다.")
+        }
+
+        return ResponseEntity.ok("OK")*/
     }
 
     // 2. POST (200)
