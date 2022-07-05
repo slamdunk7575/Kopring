@@ -9,6 +9,7 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest
 import org.springframework.test.web.servlet.MockMvc
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*
 import org.springframework.test.web.servlet.result.MockMvcResultHandlers.*
+import org.springframework.test.web.servlet.result.MockMvcResultMatchers
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers.*
 import org.springframework.util.LinkedMultiValueMap
 
@@ -24,8 +25,8 @@ class ExceptionApiControllerTest {
         mockMvc.perform(
             get("/api/exception/hello")
         ).andExpect (
-            // MockMvcResultMatchers.status().isOk
-            status().`is`(400)
+            status().isOk
+            // status().`is`(400)
         ).andExpect (
             content().string("hello")
         ).andDo(print())
