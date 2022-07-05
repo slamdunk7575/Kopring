@@ -30,16 +30,17 @@ import javax.validation.constraints.Size
 class ExceptionApiController {
 
     @GetMapping("/hello")
-    fun hello() {
+    fun hello(): String {
         // throw RuntimeException("강제 Exception 발생")
         val list = mutableListOf<String>()
-        val temp = list[0]
+        // val temp = list[0]
+        return "hello"
     }
 
     @GetMapping("")
     fun get(
         @NotBlank
-        @Size(min = 2, max = 6)
+        @Size(min = 2, max = 8)
         @RequestParam name: String,
 
         @Min(10)
