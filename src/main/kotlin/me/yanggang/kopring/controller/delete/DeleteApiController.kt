@@ -8,7 +8,7 @@ import javax.validation.constraints.Size
 
 @RestController
 @RequestMapping("/api")
-@Validated
+@Validated // 컨트롤러 단위에서 전체 적용
 class DeleteApiController {
 
     // 1. Query Parameter
