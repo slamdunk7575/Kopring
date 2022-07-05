@@ -3,6 +3,7 @@ package me.yanggang.kopring.model.http
 import com.fasterxml.jackson.annotation.JsonProperty
 import com.fasterxml.jackson.databind.PropertyNamingStrategies
 import com.fasterxml.jackson.databind.annotation.JsonNaming
+import me.yanggang.kopring.annotation.StringFormatDateTime
 import org.springframework.format.annotation.DateTimeFormat
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
@@ -37,6 +38,7 @@ data class UserRequest (
         @field:Pattern(regexp = "^\\d{2,3}-\\d{3,4}-\\d{4}\$") // 정규식 검증
         var phoneNumber: String?=null,
 
+        @field:StringFormatDateTime(pattern = "yyyy-MM-dd HH:mm:ss", message = "패턴이 올바르지 않습니다")
         var createdAt:String?=null // yyyy-MM-dd HH:mm:ss (예: 2022-07-12 13:00:00)
 
         // P2. 현업에서는 여러 곳에 API 연동을 처리하는데 그럴때마다 일일히 @JsonProperty 지정한다?
@@ -46,7 +48,7 @@ data class UserRequest (
 ) {
         // 기존의 Validation 어노테이션으로 검증할 수 없을때 함수를 만들어서 커스텀하게 검증
         // 정상 true, 비정상 false
-        @AssertTrue(message = "생성일자의 패턴은 yyyy-MM-dd HH:mm:ss 여야 합니다.")
+        /*@AssertTrue(message = "생성일자의 패턴은 yyyy-MM-dd HH:mm:ss 여야 합니다.")
         private fun isValidCreatedAt():Boolean {
                 return try {
                         LocalDateTime.parse(this.createdAt, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"))
@@ -54,5 +56,5 @@ data class UserRequest (
                 } catch (e: Exception) {
                         false
                 }
-        }
+        }*/
 }
